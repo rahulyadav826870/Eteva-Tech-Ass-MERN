@@ -1,6 +1,7 @@
 const express =require("express")
 const cors = require("cors");
 const { connected } = require("./utils/db");
+const { companyRouter } = require("./routes/companyRoute.route");
 const app =express()
 require('dotenv').config()
 
@@ -14,6 +15,8 @@ app.get("/",(req,res)=>{
         
     }
 })
+
+app.use("/company",companyRouter)
 
 app.listen(process.env.port, async()=>{
     try {
