@@ -11,8 +11,8 @@ const companySchema=mongoose.Schema({
 },{versionKey:false})
 
 
-const companyModel=mongoose.model("companyForm",companySchema)
+const CompanyModel=mongoose.model("companyForm",companySchema)
 
 module.exports={
-    companyModel
+    CompanyModel
 }
