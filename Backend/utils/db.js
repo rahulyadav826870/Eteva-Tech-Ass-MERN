@@ -1,7 +1,8 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose");
+require("dotenv").config();
 
-const connected =mongoose.connect("mongodb://127.0.0.1:27017/companyForm")
+const connected = mongoose.connect(process.env.mongoURL);
 
-module.exports={
-    connected
-}
+module.exports = {
+  connected,
+};
