@@ -42,13 +42,28 @@ companyRouter.get("/", async (req, res) => {
 
 companyRouter.post("/add", async (req, res) => {
   const payload = req.body;
+
   try {
+ // Perform form validation ...(form validation is also define in models)
+ const { companyName, contactEmail } = req.body;
+
+ // Check if the company name is unique
+ const existingCompany = await CompanyModel.findOne({ companyName });
+ if (existingCompany) {
+   return res.send({ error: 'Company name must be unique' });
+ }
+
+ // Check if the contact email is unique
+ const existingEmail = await CompanyModel.findOne({ contactEmail });
+ if (existingEmail) {
+   return res.send({ error: 'Contact email must be unique' });
+ }
+
     const companyData = await CompanyModel.insertMany(payload);
     res.send({ msg: "Data is added sucessfully" });
   } catch (error) {
-    res.send({ msg: "Something went Wrong", error: error.message });
-  }
-});
+    res.send({ msg: "Something went Wrong", error: error.message })
+}});
 
 companyRouter.put("/:id", async (req, res) => {
   const id = req.params.id;
