@@ -34,7 +34,7 @@ export const companiesRequest = () => ({
     return async (dispatch) => {
       dispatch(companiesRequest());
       try {
-        const response = await axios.get('http://localhost:8900/compan',{ params: { sortBy, sortOrder } });
+        const response = await axios.get('http://localhost:8900/company',{ params: { sortBy, sortOrder } });
         console.log("response: ", response.data.company);
         dispatch(companiesSuccess(response.data.companyData));
       } catch (error) {
